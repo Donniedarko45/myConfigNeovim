@@ -15,13 +15,14 @@ This Neovim configuration is based on the NvChad starter template, with addition
   - JS/JSX
   - TS/TSX
   - Tailwind
+  - Prisma
 
 ## Getting Started
 
 1. Install Neovim. You can check out the official [docs](https://github.com/neovim/neovim/blob/master/INSTALL.md)
 2. Clone this configuration:
    ```bash
-   git clone https://github.com/jitesh117/nvim ~/.config/nvim && nvim
+   git clone https://github.com/Donniedarko45/myConfigNeovim.git && nvim
    ```
 3. Run the following command inside Neovim to install all required language servers and formatters:
    ```vim
