@@ -89,6 +89,7 @@ lspconfig.emmet_language_server.setup {
     "scss",
     "pug",
     "typescript",
+    "clangd",
     "typescriptreact",
   },
   -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
@@ -121,13 +122,3 @@ lspconfig.emmet_language_server.setup {
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
 -- }
--- c & cpp setup
-lspconfig.clangd.setup {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-    on_attach(client, bufnr)
-  end,
-  on_init = on_init,
-  capabilities = capabilities,
-}

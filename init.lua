@@ -16,25 +16,6 @@ require("lazy").setup({
     branch = "v2.5",
     import = "nvchad.plugins",
   },
-  {
-    "kawre/leetcode.nvim",
-    build = ":TSUpdate html",
-    lazy = false,
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {
-      injector = {
-        ["cpp"] = {
-          before = { "#include <bits/stdc++.h>", "using namespace std;" },
-        },
-      },
-    },
-  },
   { import = "plugins" },
 }, lazy_config)
 
@@ -94,4 +75,18 @@ vim.o.number = true -- Enable line numbers
 
 require("live-server").setup {
   args = { "--port=3000", "--open" },
+}
+
+require("better-comment").Setup()
+vim.opt.guicursor = ""
+
+require("lspconfig").clangd.setup {
+  cmd = {
+    "clangd",
+    "--header-insertion=iwyu",
+    "--compile-commands-dir=.",
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  root_dir = require("lspconfig").util.root_pattern("compile_commands.json", ".git"),
+  capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }

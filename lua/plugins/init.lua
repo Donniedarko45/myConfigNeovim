@@ -9,10 +9,8 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
   },
-  {
-    "felipejoribeiro/clockify.nvim",
-    dependencies = {},
-  },
+
+  { "Djancyp/better-comments.nvim" },
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -48,7 +46,6 @@ return {
       require("fzf-lua").setup {}
     end,
   },
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "williamboman/mason.nvim",
   },
@@ -88,6 +85,16 @@ return {
       require("persistence").setup {
         dir = vim.fn.expand(vim.fn.stdpath "state" .. "/sessions/"),
         options = { "buffers", "curdir", "tabpages", "winsize" },
+      }
+    end,
+  },
+  {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
       }
     end,
   },
