@@ -47,9 +47,6 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim",
-  },
-  {
     "mfussenegger/nvim-dap",
   },
   {
@@ -130,6 +127,16 @@ return {
         },
       }
     end,
+  },
+   {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "clangd",
+        "clang-format",
+        "lua-language-server",
+      },
+    },
   },
   {
     "windwp/nvim-ts-autotag",

@@ -79,14 +79,3 @@ require("live-server").setup {
 
 require("better-comment").Setup()
 vim.opt.guicursor = ""
-
-require("lspconfig").clangd.setup {
-  cmd = {
-    "clangd",
-    "--header-insertion=iwyu",
-    "--compile-commands-dir=.",
-  },
-  filetypes = { "c", "cpp", "objc", "objcpp" },
-  root_dir = require("lspconfig").util.root_pattern("compile_commands.json", ".git"),
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
-}
