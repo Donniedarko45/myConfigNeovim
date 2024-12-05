@@ -49,18 +49,10 @@ local options = {
   },
   mason = {
     pkgs = {
-      -- go stuff
-      "gopls",
-      "gofumpt",
-      "golines",
-      "goimports",
-      "goimports-reviser",
-      -- python stuff
+
       "pyright",
       "black",
-      "mypy",
       "ruff",
-      "debugpy",
       -- web dev stuff
       "eslint-lsp",
       "prettier",

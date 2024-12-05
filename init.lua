@@ -46,15 +46,6 @@ require("lspconfig").prismals.setup {
     },
   },
 }
-require("lualine").setup {
-  options = {
-    theme = "auto",
-  },
-  sections = {
-    lualine_c = { { "filename", color = { bg = "none" } } },
-    lualine_x = { { "encoding", color = { bg = "none" } }, { "fileformat", color = { bg = "none" } } },
-  },
-}
 
 vim.cmd [[
   highlight StatusLine guibg=none
@@ -73,9 +64,19 @@ vim.cmd [[
 ]]
 vim.o.number = true -- Enable line numbers
 
-require("live-server").setup {
-  args = { "--port=3000", "--open" },
-}
-
-require("better-comment").Setup()
 vim.opt.guicursor = ""
+
+vim.wo.number = true
+vim.wo.relativenumber = false
+
+-- TypeScript/JavaScript LSP setup
+require("lspconfig").ts_ls.setup {
+  on_attach = function(client, bufnr)
+    -- Optional: Disable tsserver's formatting in favor of a formatter like Prettier or ESLint
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end,
+
+  -- Optional: Add capabilities for better autocompletion with nvim-cmp
+  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+}
