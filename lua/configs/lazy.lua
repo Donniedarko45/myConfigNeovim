@@ -3,7 +3,7 @@ return {
   install = { colorscheme = { "nvchad" } },
   require("colors").setup {
     alpha = 0.2, -- Adjust the alpha value for transparency
-    transparency = true,
+    transparency = false,
   },
   ui = {
     icons = {
