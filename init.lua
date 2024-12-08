@@ -1,14 +1,18 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 -- bootstrap lazy and all plugins
+
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   local repo = "https://github.com/folke/lazy.nvim.git"
   vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
+
 vim.o.showtabline = 0
 vim.opt.rtp:prepend(lazypath)
+
 local lazy_config = require "configs.lazy"
+
 require("lazy").setup({
   {
     "NvChad/NvChad",
@@ -24,6 +28,7 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "nvchad.autocmds"
+
 vim.schedule(function()
   require "mappings"
 end)
@@ -37,6 +42,7 @@ vim.api.nvim_set_hl(0, "TabLineFill", { bg = "none" })
 vim.api.nvim_set_hl(0, "TabLineSel", { bg = "none" })
 vim.o.wrap = true
 vim.o.linebreak = true -- Avoid breaking lines in the middle of words
+
 require("lspconfig").prismals.setup {
   cmd = { "prisma-language-server", "--stdio" },
   filetypes = { "prisma" },
