@@ -4,7 +4,7 @@
 
 local options = {
   base46 = {
-    theme = "solarized_dark",
+    theme = "catppuccin",
     transparency = true,
   },
   nvdash = {
