@@ -24,8 +24,8 @@ require("lazy").setup({
 }, lazy_config)
 
 -- load theme
+
 dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "nvchad.autocmds"
 
@@ -87,8 +87,11 @@ require("lspconfig").ts_ls.setup {
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }
 
+vim.o.laststatus = 3
+
 require("lualine").setup {
   options = {
+    lazy = false,
     icons_enabled = true,
     theme = "auto",
     component_separators = { left = "", right = "" },
@@ -102,9 +105,9 @@ require("lualine").setup {
     always_show_tabline = true,
     globalstatus = false,
     refresh = {
-      statusline = 100,
-      tabline = 100,
-      winbar = 100,
+      statusline = 200,
+      tabline = 200,
+      winbar = 200,
     },
   },
   sections = {

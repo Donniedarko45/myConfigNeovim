@@ -77,6 +77,8 @@ return {
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
+      zen = { enabled = true },
+      animate = { enabled = true },
     },
     keys = {
       {
@@ -85,6 +87,18 @@ return {
           Snacks.lazygit()
         end,
         desc = "open lazygit",
+      },
+      {
+        "<leader>we",
+        function()
+          Snacks.dashboard()
+        end,
+      },
+      {
+        "<leader>zen",
+        function()
+          Snacks.zen()
+        end,
       },
     },
   },
@@ -211,10 +225,6 @@ return {
           "clangd",
           "--background-index",
           "--clang-tidy",
-          "--header-insertion=iwyu",
-          "--completion-style=detailed",
-          "--function-arg-placeholders",
-          "--fallback-style=llvm",
         },
         filetypes = {
           "c",
