@@ -24,7 +24,6 @@ require("lazy").setup({
 }, lazy_config)
 
 -- load theme
-
 dofile(vim.g.base46_cache .. "defaults")
 require "options"
 require "nvchad.autocmds"
@@ -36,13 +35,11 @@ end)
 require("colors").setup {
   alpha = 0.2, -- Adjust the alpha value for transparency
 }
-vim.opt.laststatus = 3
 vim.api.nvim_set_hl(0, "TabLine", { bg = "none" })
 vim.api.nvim_set_hl(0, "TabLineFill", { bg = "none" })
 vim.api.nvim_set_hl(0, "TabLineSel", { bg = "none" })
 vim.o.wrap = true
 vim.o.linebreak = true -- Avoid breaking lines in the middle of words
-
 require("lspconfig").prismals.setup {
   cmd = { "prisma-language-server", "--stdio" },
   filetypes = { "prisma" },
@@ -87,11 +84,8 @@ require("lspconfig").ts_ls.setup {
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }
 
-vim.o.laststatus = 3
-
 require("lualine").setup {
   options = {
-    lazy = false,
     icons_enabled = true,
     theme = "auto",
     component_separators = { left = "", right = "" },
@@ -105,9 +99,9 @@ require("lualine").setup {
     always_show_tabline = true,
     globalstatus = false,
     refresh = {
-      statusline = 200,
-      tabline = 200,
-      winbar = 200,
+      statusline = 100,
+      tabline = 100,
+      winbar = 100,
     },
   },
   sections = {
