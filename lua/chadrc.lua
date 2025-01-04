@@ -58,6 +58,7 @@ local options = {
       "prettier",
       "tailwindcss-language-server",
       "typescript-language-server",
+      "cssls",
       -- markdown
       "marksman",
       -- C/CPP stuff
