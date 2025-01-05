@@ -9,7 +9,7 @@ return {
     priority = 1000,
     options = {
       icons_enabled = true,
-      theme = "auto",
+      theme = "rosepine",
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       disabled_filetypes = {
@@ -46,7 +46,10 @@ return {
     winbar = {},
     inactive_winbar = {},
     extensions = {},
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+      { "rose-pine/neovim", as = "rosepine" },
+    },
   },
   {
     "folke/edgy.nvim",
