@@ -4,6 +4,7 @@ return {
     -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
+  { "wakatime/vim-wakatime", lazy = false },
   {
     "nvim-lualine/lualine.nvim",
     priority = 1000,
@@ -110,26 +111,7 @@ return {
     },
   },
   { "github/copilot.vim", lazy = false },
-  {
-    "kdheepak/lazygit.nvim",
-    lazy = true,
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    -- optional for floating window border decoration
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    -- setting the keybinding for LazyGit with 'keys' is recommended in
-    -- order to load the plugin when the command is run for the first time
-    keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-    },
-  },
+
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -194,12 +176,6 @@ return {
         "<leader>we",
         function()
           Snacks.dashboard()
-        end,
-      },
-      {
-        "<leader>zen",
-        function()
-          Snacks.zen()
         end,
       },
     },
