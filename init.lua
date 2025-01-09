@@ -30,6 +30,7 @@ require "nvchad.autocmds"
 
 vim.schedule(function()
   require "mappings"
+  require("core.ai-mappings").init()  -- Initialize AI assistant mappings
 end)
 -- init.lua
 require("colors").setup {
