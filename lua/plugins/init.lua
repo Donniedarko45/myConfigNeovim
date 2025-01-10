@@ -4,6 +4,12 @@ return {
     -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("lspconfig").cssls.setup {}
+    end,
+  },
   { "wakatime/vim-wakatime", lazy = false },
   {
     "nvim-lualine/lualine.nvim",
@@ -113,74 +119,6 @@ return {
   { "github/copilot.vim", lazy = false },
 
   {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    opts = {
-      lazygit = { enabled = true },
-      dashboard = { enabled = true },
-      terminal = {
-        enabled = true,
-        {
-          bo = {
-            filetype = "snacks_terminal",
-          },
-          wo = {},
-          keys = {
-            q = "hide",
-            gf = function(self)
-              local f = vim.fn.findfile(vim.fn.expand "<cfile>", "**")
-              if f == "" then
-                Snacks.notify.warn "No file under cursor"
-              else
-                self:hide()
-                vim.schedule(function()
-                  vim.cmd("e " .. f)
-                end)
-              end
-            end,
-            term_normal = {
-              "<esc>",
-              function(self)
-                self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
-                if self.esc_timer:is_active() then
-                  self.esc_timer:stop()
-                  vim.cmd "stopinsert"
-                else
-                  self.esc_timer:start(200, 0, function() end)
-                  return "<esc>"
-                end
-              end,
-              mode = "t",
-              expr = true,
-              desc = "Double escape to normal mode",
-            },
-          },
-        },
-      },
-      quickfile = { enabled = true },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
-      zen = { enabled = true },
-      animate = { enabled = true },
-    },
-    keys = {
-      {
-        "<leader>.",
-        function()
-          Snacks.lazygit()
-        end,
-        desc = "open lazygit",
-      },
-      {
-        "<leader>we",
-        function()
-          Snacks.dashboard()
-        end,
-      },
-    },
-  },
-  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
@@ -242,7 +180,7 @@ return {
             enabled = true,
           },
           signature = {
-            enabled = true,
+            enabled = false,
           },
           message = {
             enabled = true, -- Enables diagnostics messages in a dedicated view
@@ -260,83 +198,11 @@ return {
       require("mason").setup()
     end,
   },
-
   -- Mason LSP Config to bridge mason with nvim-lspconfig
   {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
-    },
-    config = function()
-      require "configs.lspconfig" --isko nai hatana hai
-      require("mason-lspconfig").setup {
-        ensure_installed = {
-          "eslint", -- ESLint for linting
-          "clangd", -- C/C++ Language Server
-          "pyright", -- Python Language Server
-          "lua-language-server",
-          "typescript-language-server",
-        },
-      }
-    end,
-  },
-  {
     "neovim/nvim-lspconfig",
     config = function()
-      require("lspconfig").cssls.setup {}
-    end,
-  },
-
-  -- Neovim LSP Configuration
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp", -- Completion source for LSP
-    },
-    config = function()
-      local lspconfig = require "lspconfig"
-      require "configs.lspconfig" --isko nai hatana hai
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      -- Shared on_attach function for common LSP keymappings
-      local on_attach = function(client, bufnr) end
-
-      lspconfig.clangd.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        cmd = {
-          "clangd",
-          "--background-index",
-          "--clang-tidy",
-        },
-        filetypes = {
-          "c",
-          "cpp",
-          "objc",
-          "objcpp",
-          "cuda",
-          "proto",
-        },
-        root_dir = lspconfig.util.root_pattern(
-          "compile_commands.json",
-          "compile_flags.txt",
-          ".git",
-          "Makefile",
-          "CMakeLists.txt"
-        ),
-      }
-      -- Python LSP Configuration (pyright)
-      lspconfig.pyright.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = {
-          pyright = {
-            -- Using strict type checking
-            typeCheckingMode = "off",
-          },
-        },
-      }
+      require "configs.lspconfig"
     end,
   },
 
@@ -351,51 +217,6 @@ return {
       "saadparwaiz1/cmp_luasnip",
     },
     lazy = true,
-    config = function()
-      local cmp = require "cmp"
-      local luasnip = require "luasnip"
-
-      cmp.setup {
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        mapping = cmp.mapping.preset.insert {
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<CR>"] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          },
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        },
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-        }, {
-          { name = "buffer" },
-        }),
-      }
-    end,
   },
 
   {

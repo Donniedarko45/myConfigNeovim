@@ -4,7 +4,7 @@
 
 local options = {
   base46 = {
-    theme = "rosepine",
+    theme = "gruvchad",
     transparency = true,
   },
   nvdash = {
@@ -56,10 +56,9 @@ local options = {
       -- web dev stuff
       "eslint-lsp",
       "prettier",
-      "tailwindcss-language-server",
       "typescript-language-server",
-      "cssls",
       -- markdown
+      " tailwindcss-language-server",
       "marksman",
       -- C/CPP stuff
       "clangd",

@@ -10,7 +10,7 @@ end
 
 vim.o.showtabline = 0
 vim.opt.rtp:prepend(lazypath)
-
+vim.o.swapfile = false
 local lazy_config = require "configs.lazy"
 
 require("lazy").setup({
@@ -27,10 +27,8 @@ require("lazy").setup({
 dofile(vim.g.base46_cache .. "defaults")
 require "options"
 require "nvchad.autocmds"
-
 vim.schedule(function()
   require "mappings"
-  require("core.ai-mappings").init()  -- Initialize AI assistant mappings
 end)
 -- init.lua
 require("colors").setup {
@@ -75,11 +73,7 @@ vim.wo.relativenumber = false
 
 -- TypeScript/JavaScript LSP setup
 require("lspconfig").ts_ls.setup {
-  on_attach = function(client, bufnr)
-    -- Optional: Disable tsserver's formatting in favor of a formatter like Prettier or ESLint
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-  end,
+  on_attach = function(client, bufnr) end,
 
   -- Optional: Add capabilities for better autocompletion with nvim-cmp
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
@@ -88,7 +82,6 @@ require("lspconfig").ts_ls.setup {
 require("lualine").setup {}
 
 local lspconfig = require "lspconfig"
-
 lspconfig.cssls.setup {
   cmd = { "vscode-css-language-server", "--stdio" },
   filetypes = { "css", "scss", "less" },
