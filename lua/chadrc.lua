@@ -7,6 +7,7 @@ local options = {
     theme = "gruvchad",
     transparency = true,
   },
+  vim.api.nvim_set_hl(0, "Comment", { fg = "#6666a3", bg = "NONE", italic = true }),
   nvdash = {
     load_on_startup = true,
     header = {

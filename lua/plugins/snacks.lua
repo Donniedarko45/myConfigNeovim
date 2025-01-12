@@ -5,19 +5,20 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-      bigfile = { enabled = true },
+      bigfile = { enabled = false },
       dashboard = { enabled = true },
       indent = { enabled = true },
-      input = { enabled = true },
+      input = { enabled = false },
       notifier = {
         enabled = true,
         timeout = 3000,
       },
       quickfile = { enabled = true },
-      scroll = { enabled = true },
+      scroll = { enabled = false },
       statuscolumn = { enabled = true },
       words = { enabled = true },
       styles = {
+        enabled = false,
         notification = {
           wo = { wrap = true }, -- Wrap notifications
         },

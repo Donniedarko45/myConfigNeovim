@@ -2,6 +2,7 @@ return {
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
+    -- --how to chnahe
     opts = require "configs.conform",
   },
   {

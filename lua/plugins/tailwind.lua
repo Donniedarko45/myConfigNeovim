@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    lazy = true,
     opts = {
       servers = {
         tailwindcss = {},
@@ -9,6 +10,7 @@ return {
   },
   {
     "NvChad/nvim-colorizer.lua",
+    lazy = true,
     opts = {
       user_default_options = {
         tailwind = true,
