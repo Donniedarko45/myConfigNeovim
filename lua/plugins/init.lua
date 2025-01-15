@@ -6,6 +6,12 @@ return {
     opts = require "configs.conform",
   },
   {
+    "razak17/tailwind-fold.nvim",
+    opts = {},
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = { "html", "svelte", "astro", "vue", "javascriptreact", "typescriptreact", "php", "blade" },
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require("lspconfig").cssls.setup {}
