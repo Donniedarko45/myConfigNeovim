@@ -7,13 +7,6 @@ if not vim.uv.fs_stat(lazypath) then
   vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
 
-vim.api.nvim_create_autocmd("Colorscheme", {
-  pattern = "*",
-  callback = function()
-    vim.api.nvim_set_hl(0, "Comment", { fg = "#6b6bb5", bg = "NONE", italic = true })
-  end,
-})
-
 vim.o.showtabline = 0
 vim.opt.rtp:prepend(lazypath)
 vim.o.swapfile = false
