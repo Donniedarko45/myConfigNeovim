@@ -8,15 +8,7 @@ return {
       },
     },
   },
-  {
-    "NvChad/nvim-colorizer.lua",
-    lazy = true,
-    opts = {
-      user_default_options = {
-        tailwind = true,
-      },
-    },
-  },
+
   {
     "hrsh7th/nvim-cmp",
     dependencies = {

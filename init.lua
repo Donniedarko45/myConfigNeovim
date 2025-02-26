@@ -6,7 +6,7 @@ if not vim.uv.fs_stat(lazypath) then
   local repo = "https://github.com/folke/lazy.nvim.git"
   vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
-
+vim.notify = function() end
 vim.o.showtabline = 0
 vim.opt.rtp:prepend(lazypath)
 vim.o.swapfile = false
@@ -87,5 +87,13 @@ lspconfig.cssls.setup {
     css = { validate = true },
     scss = { validate = true },
     less = { validate = true },
+  },
+}
+
+vim.diagnostic.config {
+  severity_sort = true,
+  float = { border = "rounded" },
+  severity = {
+    min = vim.diagnostic.severity.ERROR,
   },
 }

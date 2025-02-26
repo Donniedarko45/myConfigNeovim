@@ -4,7 +4,7 @@
 
 local options = {
   base46 = {
-    theme = "gruvbox",
+    theme = "chadtain",
     transparency = true,
   },
   vim.api.nvim_set_hl(0, "Comment", { fg = "#6666a3", bg = "NONE", italic = true }),
